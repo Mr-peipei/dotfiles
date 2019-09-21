@@ -1,3 +1,4 @@
+let loaded_netrwPlugin = 1
 set number
 set nocompatible
 set backspace=indent,eol,start
