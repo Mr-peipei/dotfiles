@@ -39,8 +39,11 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'Shougo/neocomplete.vim'
+<<<<<<< HEAD
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'LeafCage/yankround.vim'
+=======
+>>>>>>> origin/master
 " My Bundles here:
  " Refer to |:NeoBundle-examples|.
  " Note: You don't set neobundle setting in .gvimrc!
@@ -88,6 +91,7 @@ highlight Pmenu ctermbg = 6
 highlight PmenuSel ctermbg = 5
 highlight PmenuSbar ctermbg=0
 inoremap <expr><CR> pumvisible()?neocomplete#close_popup():"<CR>"
+<<<<<<< HEAD
 let g:terminal_ansi_colors = [
     \ 'black',
     \ 'red',
@@ -116,3 +120,5 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-o> <Plug>(yankround-next)
+=======
+>>>>>>> origin/master
