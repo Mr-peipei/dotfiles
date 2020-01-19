@@ -18,6 +18,7 @@ nmap <silent> <Tab> 15<Right>
 vmap <silent> <Tab> <C-o>15<Right>
 nmap <silent> <S-Tab> 15<Left>
 vmap <silent> <S-Tab> <C-o>15<Left>
+
 " Note: Skip initialization for vim-tiny or vim-small.
  if 0 | endif
 
@@ -53,6 +54,8 @@ NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 NeoBundle 'severij/vadelma'
 NeoBundle 'freeo/vim-kalisi'
 NeoBundle 'simeji/winresizer'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'LeafCage/yankround.vim'
 " My Bundles here:
  " Refer to |:NeoBundle-examples|.
  " Note: You don't set neobundle setting in .gvimrc!
@@ -78,6 +81,11 @@ call plug#end()
 "syntax on
 
 "set t_Co=256
+ colorscheme molokai
+
+syntax on
+
+set t_Co=256
 
 "open-browser.vim
 let g:netrw_nogx=1 " disable netrw's gx mapping.
@@ -106,6 +114,24 @@ highlight Pmenu ctermbg = 6
 highlight PmenuSel ctermbg = 5
 highlight PmenuSbar ctermbg=0
 inoremap <expr><CR> pumvisible()?neocomplete#close_popup():"<CR>"
+let g:terminal_ansi_colors = [
+    \ 'black',
+    \ 'red',
+    \ 'green',
+    \ 'yellow',
+    \ 'blue',
+    \ 'magenta',
+    \ 'cyan',
+    \ 'white',
+    \ 'black(bright)',
+    \ 'red(bright)',
+    \ 'green(bright)',
+    \ 'yellow(bright)',
+    \ 'blue(bright)',
+    \ 'magenta(bright)',
+    \ 'cyan(bright)',
+    \ 'white(bright)'
+    \ ]
 
 "yankround
 nmap p <Plug>(yankround-p)
