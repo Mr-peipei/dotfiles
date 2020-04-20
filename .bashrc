@@ -26,3 +26,4 @@ alias gp='git push'
 alias p3='python3'
 alias ll='ls -l'
 alias la='ls -a'
+
