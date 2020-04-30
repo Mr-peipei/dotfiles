@@ -16,6 +16,7 @@ set smarttab
 set smartindent
 set noundofile
 set foldmethod=manual
+set scrolloff=5
 nmap <silent> <Tab> 15<Right>
 vmap <silent> <Tab> <C-o>15<Right>
 nmap <silent> <S-Tab> 15<Left>
@@ -46,6 +47,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
  " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
  " ファイルをtree表示してくれる
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'thinca/vim-quickrun'
@@ -57,6 +59,8 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'junegunn/fzf.vim'
@@ -236,3 +240,17 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+inoremap <silent> jj <ESC>
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
