@@ -8,8 +8,9 @@ set backspace=indent,eol,start
 set undofile
 set clipboard+=unnamed
 set mouse=
-set tabstop=1
+set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 set smarttab
@@ -29,7 +30,8 @@ noremap <S-l>   $
 nnoremap <Space>v  :vs
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-
+nnoremap j gj
+nnoremap k gk
 
 "スペルチュッカー
 set spelllang=en,cjk
@@ -156,17 +158,17 @@ let g:previm_custome_css_path = '/Users/mattn/public_html/style.css'
 
 "neocomplete
 "起動時に有効
-"let g:neocomplete#enable_at_startup=1
-"let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_smart_case = 1
 "ポップアップメニューで表示される候補の数
-"let g:neocomplete#max_list=50
+let g:neocomplete#max_list=50
 "キーワードの長さ、デフォルトで80
-"let g:neocomplete#max_keyword_width = 80
-"let g:neocomplete#enable_ignore_case = 1
-"highlight Pmenu ctermbg = 6
-"highlight PmenuSel ctermbg = 5
-"highlight PmenuSbar ctermbg=0
-"inoremap <expr><CR> pumvisible()?neocomplete#close_popup():"<CR>"
+let g:neocomplete#max_keyword_width = 80
+let g:neocomplete#enable_ignore_case = 1
+highlight Pmenu ctermbg = 6
+highlight PmenuSel ctermbg = 5
+highlight PmenuSbar ctermbg=0
+inoremap <expr><CR> pumvisible()?neocomplete#close_popup():"<CR>"
 let g:terminal_ansi_colors = [
     \ 'black',
     \ 'red',
@@ -186,44 +188,6 @@ let g:terminal_ansi_colors = [
     \ 'white(bright)'
     \ ]
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
