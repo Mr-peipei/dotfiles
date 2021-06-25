@@ -6,7 +6,8 @@ set nocompatible "設定をvimの設定にする
 set whichwrap=b,s,h,l,[,],<,>,~ "左右の移動で行をまたいで移動
 set backspace=indent,eol,start "vimでバックスペースを有効にする
 set noundofile "vimでundoファイルを生成させない
-set clipboard+=unnamed "clipboard有効化
+" set clipboard+=unnamed "clipboard有効化
+set clipboard=unnamedplus
 set mouse= "mouse有効化 aで有効
 set tabstop=4 "tabの幅を4に設定 デフォルトは8
 set shiftwidth=4 "インデントを増やす、減らす時幅
@@ -24,6 +25,7 @@ set completeopt+=menuone,noinsert "lsp設定時追加
 set splitright "画面を新規で開く際、右側に表示する
 set autochdir "開いたファイルにディレクトリを移動する
 set noswapfile "スワップファイルを作成しない"
+let loaded_matchparen=1 "カッコの反対側のハイライトを消す
 nmap <silent> <Tab> 15<Right>
 vmap <silent> <Tab> <C-o>15<Right>
 nmap <silent> <S-Tab> 15<Left>
@@ -71,7 +73,7 @@ Plug 'Shougo/unite.vim' "統合インターフェース
 Plug 'vim-airline/vim-airline' "ステータスバーカッコよくする
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons' "vim-airlineでアイコン表示用
-" " --------lsp settigns---------
+" --------lsp settigns---------
 Plug 'prabirshrestha/vim-lsp' "lsp本体
 Plug 'thomasfaingnaert/vim-lsp-snippets' "ultisnipsのために必要みたい
 Plug 'prabirshrestha/asyncomplete.vim' "補完リスト表示
@@ -113,6 +115,8 @@ Plug 'lambdalisue/nerdfont.vim' "ファイラーのアイコン用
 Plug 'lambdalisue/fern-renderer-nerdfont.vim' "ファイラーのアイコン用2
 Plug 'Mr-peipei/session.vim'
 Plug 'Mr-peipei/worktimer.vim',{ 'branch': 'main' }
+Plug 'cohama/lexima.vim' "カッコ閉じを自動にする
+Plug 'lepture/vim-jinja' "jinja(djangoやflaskで使用するhtml書式)syntax
 call plug#end()
 
 
@@ -318,7 +322,7 @@ endif
 "PreviewMarkdown
 let g:preview_markdown_vertical = 1
 let g:preview_markdown_auto_update = 1
-nnoremap <Leader>md :PreviewMarkdown expand('%:t')<CR>
+nnoremap <Leader>md :PreviewMarkdown<CR>
 
 "session.vim settins
 let g:session_path = '/Users/murakamishumpei/Documents/vim'
@@ -339,4 +343,31 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
-" add modify
+" Japanase settings
+inoremap <silent> っｊ <ESC>
+function! Fcitx2en()
+    let s:input_status = system("fcitx-remote")
+    if s:input_status == 2
+        let l:a = system("fcitx-remote -c")
+    endif
+endfunction
+
+set ttimeoutlen=150
+autocmd InsertLeave * call Fcitx2en()
+
+"emmet settings
+let g:user_emmet_leader_key='<C-y>'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+"vim-surround
+"for django settigns
+let b:surround_{char2nr("v")} = "{{ \r }}"
+let b:surround_{char2nr("{")} = "{{ \r }}"
+let b:surround_{char2nr("%")} = "{% \r %}"
+let b:surround_{char2nr("b")} = "{% block \1block name: \1 %}\r{% endblock \1\1 %}"
+let b:surround_{char2nr("i")} = "{% if \1condition: \1 %}\r{% endif %}"
+let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
+let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
+let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
+nmap S <Plug>VSurround
