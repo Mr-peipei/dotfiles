@@ -44,6 +44,10 @@ autocmd FileType html setl expandtab tabstop=2 shiftwidth=2 softtabstop=2 "html�
 imap >> \|><Space>
 let g:surround_45 = "<% \r %>"
 let g:surround_61 = "<%= \r %>"
+"font settings
+set guifont=Cica:h16
+set printfont=Cica:h12
+set ambiwidth=double
 
 
 " shiftで移動を楽にする
@@ -113,19 +117,22 @@ Plug 'LeafCage/vimhelpgenerator' "VimHelpGenetratorコマンドでヘルプフ�
 Plug 'lambdalisue/fern.vim' "vim-jpでおすすめされた強力なファイラー
 Plug 'lambdalisue/nerdfont.vim' "ファイラーのアイコン用
 Plug 'lambdalisue/fern-renderer-nerdfont.vim' "ファイラーのアイコン用2
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'Mr-peipei/session.vim'
 Plug 'Mr-peipei/worktimer.vim',{ 'branch': 'main' }
 Plug 'cohama/lexima.vim' "カッコ閉じを自動にする
 Plug 'lepture/vim-jinja' "jinja(djangoやflaskで使用するhtml書式)syntax
+Plug 'tomasiser/vim-code-dark' "vimのカラースキーマ
 call plug#end()
 
 
 " ----------------------------------------------
 " colorの設定は以下
 " ----------------------------------------------
-colorscheme molokai
+" colorscheme molokai
 " colorscheme delek
 " colorscheme kalisi
+colorscheme codedark
 syntax on
 set t_Co=256
 " set background=light
@@ -247,7 +254,8 @@ let g:mix_format_on_save = 1
 
 " vim airline theme
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'molokai'
+let g:airline_thme = 'codedark'
+" let g:airline_theme = 'molokai'
 " let g:airline_theme = 'papercolor'
 let g:airline_powerline_fonts = 1
 
@@ -331,6 +339,12 @@ let g:session_path = '/Users/murakamishumpei/Documents/vim'
 "toggleで切り替えられるようにする
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 let g:fern#renderer = 'nerdfont'
+"fernのアイコンに色をつける
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
 
 
 "muilticursor
@@ -371,3 +385,5 @@ let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
 let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
 let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 nmap S <Plug>VSurround
+
+
