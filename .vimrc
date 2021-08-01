@@ -6,7 +6,7 @@ set nocompatible "設定をvimの設定にする
 set whichwrap=b,s,h,l,[,],<,>,~ "左右の移動で行をまたいで移動
 set backspace=indent,eol,start "vimでバックスペースを有効にする
 set noundofile "vimでundoファイルを生成させない
-" set clipboard+=unnamed "clipboard有効化
+set clipboard+=unnamed "clipboard有効化
 set clipboard=unnamedplus
 set mouse= "mouse有効化 aで有効
 set tabstop=4 "tabの幅を4に設定 デフォルトは8
@@ -26,10 +26,6 @@ set splitright "画面を新規で開く際、右側に表示する
 set autochdir "開いたファイルにディレクトリを移動する
 set noswapfile "スワップファイルを作成しない"
 let loaded_matchparen=1 "カッコの反対側のハイライトを消す
-nmap <silent> <Tab> 15<Right>
-vmap <silent> <Tab> <C-o>15<Right>
-nmap <silent> <S-Tab> 15<Left>
-vmap <silent> <S-Tab> <C-o>15<Left>
 noremap <C-u> <C-w>
 inoremap <silent> jj <ESC>
 let mapleader = "\<Space>" 
@@ -48,7 +44,8 @@ let g:surround_61 = "<%= \r %>"
 set guifont=Cica:h16
 set printfont=Cica:h12
 set ambiwidth=double
-
+" f1で.vimrcを開く
+nmap <F2> :tabnew $MYVIMRC<CR>
 
 " shiftで移動を楽にする
 noremap <S-h>   ^
@@ -79,14 +76,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons' "vim-airlineでアイコン表示用
 " --------lsp settigns---------
 Plug 'prabirshrestha/vim-lsp' "lsp本体
-Plug 'thomasfaingnaert/vim-lsp-snippets' "ultisnipsのために必要みたい
+Plug 'mattn/vim-lsp-settings' "mattnさんの、lspの設定が楽になるやつ
 Plug 'prabirshrestha/asyncomplete.vim' "補完リスト表示
 Plug 'prabirshrestha/asyncomplete-lsp.vim' "補完リストとlspの融合?
-Plug 'prabirshrestha/async.vim' "ultisnipsのために必要みたい
-Plug 'Shougo/neosnippet.vim' "snippet機能
-Plug 'Shougo/neosnippet-snippets' "snippet一覧
-Plug 'prabirshrestha/asyncomplete-neosnippet.vim' "asynompleteとsnippetsのコラボ
-Plug 'mattn/vim-lsp-settings' "mattnさんの、lspの設定が楽になるやつ
+" Plug 'prabirshrestha/async.vim' "ultisnipsのために必要みたい
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 " ----------end lsp------------
 Plug 'udalov/kotlin-vim' "kotlinの色つけ
 Plug 'junegunn/fzf.vim'
@@ -101,7 +97,7 @@ Plug 'elzr/vim-json' " edit json file
 Plug 'reireias/vim-cheatsheet' 
 " Plug 'cohama/lexima.vim' "()を対で表示する
 Plug 'tomasr/molokai'
-Plug 'tell-k/vim-browsereload-mac'
+" Plug 'tell-k/vim-browsereload-mac'
 " Plug 'tpope/vim-markdown'
 Plug 'skanehira/preview-markdown.vim'
 " Plug 'kannokanno/previm'
@@ -123,6 +119,8 @@ Plug 'Mr-peipei/worktimer.vim',{ 'branch': 'main' }
 Plug 'cohama/lexima.vim' "カッコ閉じを自動にする
 Plug 'lepture/vim-jinja' "jinja(djangoやflaskで使用するhtml書式)syntax
 Plug 'tomasiser/vim-code-dark' "vimのカラースキーマ
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'mattn/vim-goimports'
 call plug#end()
 
 
@@ -230,18 +228,6 @@ let g:vim_json_syntax_conceal=0
 let g:cheatsheet#cheat_file='/Users/murakamishumpei/Documents/vim/cheatsheet.md'
 
 
-"open-browser.vim
-let g:netrw_nogx=1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-
-
-"browse reload
-let g:returnApp = "iTerm"
-nmap <Space>bc :ChromeReloadStart<CR>
-nmap <Space>bC :ChromeReloadStop<CR>
-
-
 "vim-markdownの設定
 let g:previm_disable_default_css=1
 let g:previm_custome_css_path = '/Users/mattn/public_html/style.css'
@@ -259,24 +245,9 @@ let g:airline_thme = 'codedark'
 " let g:airline_theme = 'papercolor'
 let g:airline_powerline_fonts = 1
 
-
-" lsp ultisnips
-if executable('clangd')
-    augroup vim_lsp_cpp
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                    \ })
-	autocmd FileType c,cpp,objc,objcpp,cc setlocal omnifunc=lsp#complete
-    augroup end
-endif
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
+" ----------------------------------------------
 "vim-lsp settings
+" ----------------------------------------------
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -295,37 +266,15 @@ function! s:on_lsp_buffer_enabled() abort
     inoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
     " refer to doc to add more commands
 endfunction
 
-"asyncomplete settings
-"補完時enterで改行しない
-inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
-
-
-"asynocomple neosnippets
-call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-    \ 'name': 'neosnippet',
-    \ 'allowlist': ['*'],
-    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-    \ }))
-
-"Shougo neosnippets
-"<Ultisnipがうまく動作しなかったため、Shougoさんのneosnippetsを使用
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)"
-      \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)"
-      \: "\<TAB>"
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+" 2021-07-23 delete-test
+""asyncomplete settings
+""補完時enterで改行しない
+" inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
 "PreviewMarkdown
 let g:preview_markdown_vertical = 1
@@ -335,7 +284,9 @@ nnoremap <Leader>md :PreviewMarkdown<CR>
 "session.vim settins
 let g:session_path = '/Users/murakamishumpei/Documents/vim'
 
+" ----------------------------------------------
 "fern.vim
+" ----------------------------------------------
 "toggleで切り替えられるようにする
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 let g:fern#renderer = 'nerdfont'
@@ -372,9 +323,11 @@ autocmd InsertLeave * call Fcitx2en()
 "emmet settings
 let g:user_emmet_leader_key='<C-y>'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" autocmd FileType html,css EmmetInstall
 
+" ----------------------------------------------
 "vim-surround
+" ----------------------------------------------
 "for django settigns
 let b:surround_{char2nr("v")} = "{{ \r }}"
 let b:surround_{char2nr("{")} = "{{ \r }}"
@@ -385,5 +338,57 @@ let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
 let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
 let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
 nmap S <Plug>VSurround
+
+if has('unix') 
+endif
+if has('mac') 
+endif
+if has('unix') || has ('mac')
+endif
+if has('win32') || has ('win64')
+endif
+
+" ----------------------------------------------
+"go settings
+" ----------------------------------------------
+" let g:goimports_simplify = 1
+let g:lsp_settings = {
+  \   'gopls': {
+  \     'initialization_options': {
+  \       'usePlaceholders': v:true,
+  \     },
+  \   },
+  \ }
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
+
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
 
 
