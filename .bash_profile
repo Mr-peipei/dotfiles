@@ -19,7 +19,7 @@ alias fa="fzf-add"
 
 fzf-restore() {
 	local selected
-	selected="$(git status -s | fzf | cut -c3-)"
+	selected="$(git status -s | fzf -m | cut -c3-)"
 	if [ -n "$selected" ]; then
 		echo $selected
 		git restore $selected

@@ -7,7 +7,7 @@ set whichwrap=b,s,h,l,[,],<,>,~ "左右の移動で行をまたいで移動
 set backspace=indent,eol,start "vimでバックスペースを有効にする
 set noundofile "vimでundoファイルを生成させない
 set clipboard+=unnamed "clipboard有効化
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 set mouse= "mouse有効化 aで有効
 set tabstop=4 "tabの幅を4に設定 デフォルトは8
 set shiftwidth=4 "インデントを増やす、減らす時幅
