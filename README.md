@@ -1,16 +1,13 @@
 # Mr-Peipei dotfiles
 
-### .vimrc
+# windows(WSL)
 
-windows
+## neovim
 
-### .config.fish
+#### clipboard 共有
 
-### .bash_profile
-
-### .ideavimrc
-
-WSL
+以下に win32yank.exe を配置する。  
+"C:\Tools\win32yank\win32yank.exe"
 
 ## tmux
 
@@ -21,3 +18,7 @@ WSL
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+# ArchLinux
+
+# MacOS
