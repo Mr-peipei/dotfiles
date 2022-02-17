@@ -1,15 +1,24 @@
-
 # Mr-Peipei dotfiles
 
-### .vimrc
+# windows(WSL)
 
-windows
+## neovim
 
-### .config.fish
+#### clipboard 共有
 
+以下に win32yank.exe を配置する。  
+"C:\Tools\win32yank\win32yank.exe"
 
-### .bash_profile
+## tmux
 
+#### session 保存
 
+[参考 URL](https://github.com/tmux-plugins/tmux-resurrect)
 
-### .ideavimrc
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+# ArchLinux
+
+# MacOS
