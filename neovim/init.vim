@@ -24,6 +24,7 @@ set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
+set noswapfile
 
 
 
@@ -64,6 +65,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 colorscheme codedark
@@ -179,7 +182,9 @@ function! s:fzf_preview_settings() abort
   let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
 endfunction
 " Commands used for preview of the grep result
-let g:fzf_preview_grep_preview_cmd = expand('<sfile>:h:h') . '/bin/preview_fzf_grep'
+" let g:fzf_preview_grep_preview_cmd = expand('<sfile>:h:h') . '/bin/preview_fzf_grep'
+let g:fzf_preview_grep_preview_cmd = '~/.config/coc/extensions/node_modules/coc-fzf-preview/bin/preview_fzf_grep'
+
 
 " Cache directory for mru and mrw
 let g:fzf_preview_cache_directory = expand('~/.cache/vim/fzf_preview')
@@ -237,6 +242,7 @@ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 function! s:init_fern() abort
   " Use 'select' instead of 'edit' for default 'open' action
   nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
+  nmap <buffer> r <Plug>(fern-action-remove)
 endfunction
 
 augroup fern-custom
@@ -429,10 +435,5 @@ augroup fzf_preview
   autocmd!
   autocmd User fzf_preview#rpc#initialized call s:fzf_preview_settings() " fzf_preview#remote#initialized or fzf_preview#coc#initialized
 augroup END
-
-function! s:fzf_preview_settings() abort
-  let g:fzf_preview_command = 'COLORTERM=truecolor ' . g:fzf_preview_command
-  let g:fzf_preview_grep_preview_cmd = 'COLORTERM=truecolor ' . g:fzf_preview_grep_preview_cmd
-endfunction
 
 
