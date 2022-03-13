@@ -13,6 +13,10 @@ sudo apt upgrade
 
 Linuxbrew setup
 
+if you  miss  install this linuxbrew,it is possible ruby version error
+
+
+
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 sudo apt install build-essential curl file git
