@@ -1,0 +1,134 @@
+{
+  // "workbench.colorTheme": "One Dark Pro",
+  "glassit.alpha": 255,
+
+  // vscode-vim
+  //leader keyの変更
+  "vim.leader": "<space>",
+  //vim settings-------------------------------------
+  "vim.insertModeKeyBindings": [
+    // jjで挿入モードから<Esc>
+    { "before": ["j", "j"], "after": ["<Esc>"] },
+    { "before": [">", ">"], "after": ["|", ">", " "] }
+  ],
+  "vim.normalModeKeyBindings": [
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["$"] },
+    {
+      "before": ["<leader>", "f", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "f", "g", "s"],
+      "commands": ["workbench.view.scm"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["$"] },
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] }
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.sneak": true,
+  "vim.easymotion": true,
+  "vim.cleverF": true,
+  //easymotioのキーをsに変更
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["leader", "s"],
+      "after": ["leader", "leader", "s"]
+    }
+  ],
+  "vim.searchHighlightColor": "rgba(252, 132, 255, 0.8)",
+  "vim.incsearch": true,
+  // "vim.hlsearch": true,
+
+  //-------------------------------------------------
+  //normal settings
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "editor.smoothScrolling": true,
+  "editor.mouseWheelScrollSensitivity": 1,
+  "editor.fontFamily": "Hack",
+  "sync.gist": "8df2ef08ef39f86374d3b104fa421010",
+
+  // 拡張機能 code-runner
+  "code-runner.executorMap": {
+    "javascript": "clear; node",
+    "typescript": "clear; ts-node"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.clearPreviousOutput": true,
+  "workbench.editor.untitled.hint": "hidden",
+
+  //拡張機能prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "markdown.preview.breaks": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+
+  //java settings
+  // "java.home": "/usr/lib/jvm/java-8-openjdk"
+  "editor.wordWrap": "on",
+  // "japanese-proofreading.textlint.ひらく漢字": false,
+  // "japanese-proofreading.textlint.助詞の連続": false,
+  // "japanese-proofreading.textlint.読点の数": false,
+  // "japanese-proofreading.textlint.全角文字と半角文字の間": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+
+  //Reactでemmet使用設定
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "cSpell.userWords": ["firestore", "nyumon"],
+  "settingsSync.keybindingsPerPlatform": false,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.fontFamily": "monospace",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  //Change Indent Sizes 2
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.autoIndent": "full",
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.vim",
+  "workbench.list.automaticKeyboardNavigation": false,
+  "tabnine.experimentalAutoImports": true,
+  "explorer.confirmDragAndDrop": false,
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false,
+    "editor.formatOnSave": false
+  },
+  "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
+  "vim.vimrc.enable": true,
+  "workbench.colorTheme": "Atom One Dark",
+  "keyboard.dispatch": "keyCode",
+  "vsnotes.defaultNotePath": "/home/murakami/Documents/02_ブログ/BlogContent",
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  }
+}
