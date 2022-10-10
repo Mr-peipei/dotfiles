@@ -1,8 +1,21 @@
 # Mr-Peipei dotfiles
 
-# windows(WSL)
+## Preferance
 
-## zsh
+Supported OS: Ubuntu
+
+## Scripts Installation
+
+```bash
+git clone git@github.com:Mr-peipei/dotfiles.git
+cd dotfiles
+bash ./scripts/dotfiles-install.sh
+
+```
+
+## Manual Installation
+
+### zsh
 
 update
 
@@ -11,7 +24,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-Linuxbrew setup
+Linuxbrew setup for Ubuntu
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
@@ -106,14 +119,14 @@ if ! zplug check --verbose; then
 fi
 ```
 
-## neovim
+### neovim
 
 #### clipboard 共有
 
 以下に win32yank.exe を配置する。  
 "C:\Tools\win32yank\win32yank.exe"
 
-## tmux
+### tmux
 
 #### session 保存
 
@@ -122,7 +135,3 @@ fi
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
-
-# ArchLinux
-
-# MacOS
