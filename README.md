@@ -23,7 +23,7 @@ sudo apt install git
 ```
 
 
-2. run a shell script
+2. Run a shell script
 
 ```bash
 git clone git@github.com:Mr-peipei/dotfiles.git
