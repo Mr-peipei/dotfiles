@@ -9,5 +9,5 @@ Supported OS: Ubuntu
 ```bash
 git clone git@github.com:Mr-peipei/dotfiles.git
 cd dotfiles
-bash ./scripts/dotfiles-install.sh
+bash ./scripts/dotfiles-install.sh $ROOT_PASSWORD
 ```

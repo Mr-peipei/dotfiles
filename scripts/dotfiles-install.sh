@@ -1,6 +1,6 @@
 
 #--------------------------------------------------------------#
-#          main                                         ##
+#          main                                               ##
 #--------------------------------------------------------------#
 
 function main () {
@@ -13,7 +13,7 @@ function main () {
   # source $CURRENT/lib/install-curl.sh
   # source $CURRENT/lib/install-neovim.sh
   # source $CURRENT/lib/install-zsh.sh
-  # source $CURRENT/scripts/lib/install-vscode.sh $CURRENT
+  source $CURRENT/scripts/lib/install-vscode.sh $1 $CURRENT
 }
 
-main
+main $1
