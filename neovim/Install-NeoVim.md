@@ -52,6 +52,11 @@ Set-PoshPrompt -Theme hogehoge
 
 You can downloads nerds fonts by this [link](https://www.nerdfonts.com/font-downloads).
 
+### clipboard 共有
+
+以下に win32yank.exe を配置する。  
+"C:\Tools\win32yank\win32yank.exe"
+
 ## For Ubuntu
 
 ### Install stylua
