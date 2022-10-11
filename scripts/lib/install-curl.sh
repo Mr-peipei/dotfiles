@@ -4,7 +4,7 @@
 #--------------------------------------------------------------#
 
 function curl () {
-  suto apt install curl -y
+  echo $1 | sudo -S apt install curl -y
 }
 
-curl
+curl $1
