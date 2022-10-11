@@ -6,7 +6,8 @@
 function main () {
   echo "Welcome to Mr-peipei dotfiles"
 
-  local CURRENT=$(cd $(dirname $0);pwd)
+  local CURRENT=$(pwd)
+	echo $CURRENT
 
   # echo $1 | sudo -s apt update
   # echo $1 | sudo -s apt upgrade

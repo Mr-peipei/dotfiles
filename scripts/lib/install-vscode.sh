@@ -9,7 +9,7 @@ function vscode() {
   echo "Start installing vscode"
 
   curl -L 'https://go.microsoft.com/fwlink/?LinkID=760868' -o vscode.deb
-  echo $1 | sudo -s apt install ./vscode.deb
+  echo $1 | sudo -S apt install ./vscode.deb
   rm -f ./vscode.deb
 
   echo "Successfully install vscode"

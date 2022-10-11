@@ -3,12 +3,12 @@
 #          Neovim                                             ##
 #--------------------------------------------------------------#
 
-set -ue
+set -e
 
 function neovim() {
   echo "Start installing neovim"
 
-  echo $1 | sudo -s apt install neovim -y
+  echo $1 | sudo -S apt install neovim -y
 
   echo "Successfully install vscode"
 
