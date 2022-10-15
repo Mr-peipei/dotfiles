@@ -13,6 +13,7 @@ function main () {
   # echo $1 | sudo -s apt upgrade
 
 
+  # source $CURRENT/scripts/lib/install-base.sh $1
   # source $CURRENT/scripts/lib/install-curl.sh $1
   source $CURRENT/scripts/lib/install-neovim.sh $1 $CURRENT
   # source $CURRENT/scripts/lib/install-zsh.sh
