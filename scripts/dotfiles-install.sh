@@ -17,6 +17,7 @@ function main () {
   source $CURRENT/scripts/lib/install-neovim.sh $1 $CURRENT
   # source $CURRENT/scripts/lib/install-zsh.sh
   # source $CURRENT/scripts/lib/install-wezterm.sh $1
+  # source $CURRENT/scripts/lib/install-lazygit.sh $1
   # source $CURRENT/scripts/lib/install-vscode.sh $1 $CURRENT
 }
 
