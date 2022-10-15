@@ -50,6 +50,8 @@
   ],
   "vim.searchHighlightColor": "rgba(252, 132, 255, 0.8)",
   "vim.incsearch": true,
+  "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
+  "vim.vimrc.enable": true,
   // "vim.hlsearch": true,
 
   //-------------------------------------------------
@@ -61,13 +63,6 @@
   "editor.fontFamily": "Hack",
   "sync.gist": "8df2ef08ef39f86374d3b104fa421010",
 
-  // 拡張機能 code-runner
-  "code-runner.executorMap": {
-    "javascript": "clear; node",
-    "typescript": "clear; ts-node"
-  },
-  "code-runner.runInTerminal": true,
-  "code-runner.clearPreviousOutput": true,
   "workbench.editor.untitled.hint": "hidden",
 
   //拡張機能prettier
@@ -108,8 +103,6 @@
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "editor.autoIndent": "full",
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.vim",
   "workbench.list.automaticKeyboardNavigation": false,
   "tabnine.experimentalAutoImports": true,
   "explorer.confirmDragAndDrop": false,
@@ -120,14 +113,14 @@
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.unicodeHighlight.invisibleCharacters": false,
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "editor.formatOnSave": false
   },
-  "vim.vimrc.path": "$HOME/.config/nvim/init.vim",
-  "vim.vimrc.enable": true,
-  "workbench.colorTheme": "Atom One Dark",
   "keyboard.dispatch": "keyCode",
-  "vsnotes.defaultNotePath": "/home/murakami/Documents/02_ブログ/BlogContent",
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   }
