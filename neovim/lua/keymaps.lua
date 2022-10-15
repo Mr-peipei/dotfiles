@@ -42,7 +42,6 @@ keymap("x", "J", "5j", opts)
 keymap("x", "K", "5k", opts)
 
 -- Custom --
-keymap("n", "<Leader>sv", "<cmd>source $MYVIMRC<CR>", opts)
 keymap("n", "<esc><esc>", "<cmd>nohlsearch<cr>", opts)
 -- keymap("n", "<C-n>", "<cmd>Fern . -reveal=% -drawer -toggle -width=40<cr>", opts)
 keymap("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", opts)
