@@ -13,6 +13,7 @@ Here are some details about my setup:
 + **Terminal**: [wezterm](https://github.com/wez/wezterm/) 💙 config included!
 + **Editor**: [Neovim](https://github.com/neovim/neovim/) 💙 config included!
 + **Editor**: [VSCode](https://github.com/microsoft/vscode) 💙 config included!
++ **Git**: [LazyGit](https://github.com/jesseduffield/lazygit) 💙 config included!
 
 ## Scripts Installation
 
