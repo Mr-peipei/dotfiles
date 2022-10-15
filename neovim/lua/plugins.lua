@@ -41,7 +41,7 @@ return require("packer").startup(function()
 	-- Treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+	 run = ":TSUpdate",
 	})
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use({ "p00f/nvim-ts-rainbow" })
@@ -69,4 +69,5 @@ return require("packer").startup(function()
 
 	--git
 	use("lewis6991/gitsigns.nvim")
+	use("kdheepak/lazygit.nvim")
 end)
