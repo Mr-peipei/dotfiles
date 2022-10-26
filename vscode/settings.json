@@ -36,6 +36,8 @@
   "vim.useSystemClipboard": true,
   "vim.sneak": true,
   "vim.easymotion": true,
+  "vim.surround": true,
+  "vim.replaceWithRegister": true,
   // "vim.cleverF": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
