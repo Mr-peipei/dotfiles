@@ -1,16 +1,8 @@
 {
-  // "workbench.colorTheme": "One Dark Pro",
-  "glassit.alpha": 255,
-
-  // vscode-vim
-  //leader keyの変更
+  // -----------------------------------------------------
+  // Vim
+  // -----------------------------------------------------
   "vim.leader": "<space>",
-  //vim settings-------------------------------------
-  "vim.insertModeKeyBindings": [
-    // jjで挿入モードから<Esc>
-    { "before": ["j", "j"], "after": ["<Esc>"] },
-    { "before": [">", ">"], "after": ["|", ">", " "] }
-  ],
   "vim.normalModeKeyBindings": [
     { "before": ["j"], "after": ["g", "j"] },
     { "before": ["k"], "after": ["g", "k"] },
@@ -19,17 +11,21 @@
     { "before": ["H"], "after": ["^"] },
     { "before": ["L"], "after": ["$"] },
     {
-      "before": ["<leader>", "f", "p"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
       "before": ["<leader>", "a"],
       "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "f", "p"],
+      "commands": ["workbench.action.quickOpen"]
     },
     {
       "before": ["<leader>", "f", "g", "s"],
       "commands": ["workbench.view.scm"]
     }
+  ],
+  "vim.insertModeKeyBindings": [
+    { "before": ["j", "j"], "after": ["<Esc>"] },
+    { "before": [">", ">"], "after": ["|", ">", " "] }
   ],
   "vim.visualModeKeyBindings": [
     { "before": ["H"], "after": ["^"] },
@@ -40,8 +36,7 @@
   "vim.useSystemClipboard": true,
   "vim.sneak": true,
   "vim.easymotion": true,
-  "vim.cleverF": true,
-  //easymotioのキーをsに変更
+  // "vim.cleverF": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["leader", "s"],
@@ -54,22 +49,40 @@
   "vim.vimrc.enable": true,
   // "vim.hlsearch": true,
 
-  //-------------------------------------------------
-  //normal settings
+  // -----------------------------------------------------
+  // Editor Settings
+  // -----------------------------------------------------
   "editor.fontSize": 16,
-  "terminal.integrated.fontSize": 16,
-  "editor.smoothScrolling": true,
+  "editor.tabSize": 2,
   "editor.mouseWheelScrollSensitivity": 1,
+  "editor.smoothScrolling": true,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
   "editor.fontFamily": "Hack",
-  "sync.gist": "8df2ef08ef39f86374d3b104fa421010",
-
+  "editor.autoIndent": "full",
+  "editor.renderWhitespace": "all",
   "workbench.editor.untitled.hint": "hidden",
 
-  //拡張機能prettier
+  // -----------------------------------------------------
+  // Sync
+  // -----------------------------------------------------
+  "sync.gist": "8df2ef08ef39f86374d3b104fa421010",
+  "settingsSync.keybindingsPerPlatform": false,
+
+  // -----------------------------------------------------
+  // Terminal
+  // -----------------------------------------------------
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontFamily": "monospace",
+
+  // -----------------------------------------------------
+  // Prettier
+  // -----------------------------------------------------
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "markdown.preview.breaks": true,
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "markdown.preview.breaks": true,
   "files.exclude": {
     "**/.classpath": true,
     "**/.project": true,
@@ -77,6 +90,9 @@
     "**/.factorypath": true
   },
 
+  // -----------------------------------------------------
+  // Java
+  // -----------------------------------------------------
   //java settings
   // "java.home": "/usr/lib/jvm/java-8-openjdk"
   "editor.wordWrap": "on",
@@ -84,31 +100,16 @@
   // "japanese-proofreading.textlint.助詞の連続": false,
   // "japanese-proofreading.textlint.読点の数": false,
   // "japanese-proofreading.textlint.全角文字と半角文字の間": false,
+
+  // -----------------------------------------------------
+  // Programming Language
+  // -----------------------------------------------------
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-
-  //Reactでemmet使用設定
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "cSpell.userWords": ["firestore", "nyumon"],
-  "settingsSync.keybindingsPerPlatform": false,
-  "terminal.integrated.shell.osx": "/bin/zsh",
-  "terminal.integrated.fontFamily": "monospace",
-  "typescript.updateImportsOnFileMove.enabled": "always",
-
-  //Change Indent Sizes 2
-  "editor.insertSpaces": false,
-  "editor.detectIndentation": false,
-  "editor.tabSize": 2,
-  "editor.autoIndent": "full",
-  "workbench.list.automaticKeyboardNavigation": false,
-  "tabnine.experimentalAutoImports": true,
-  "explorer.confirmDragAndDrop": false,
-  "editor.renderWhitespace": "all",
-  "editor.minimap.enabled": false,
-  "editor.formatOnSave": true,
   "[markdown]": {
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.unicodeHighlight.invisibleCharacters": false,
@@ -120,8 +121,17 @@
     },
     "editor.formatOnSave": false
   },
+
+  // -----------------------------------------------------
+  // Others
+  // -----------------------------------------------------
+  // "workbench.colorTheme": "One Dark Pro",
+  "glassit.alpha": 255,
   "keyboard.dispatch": "keyCode",
-  "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
-  }
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "tabnine.experimentalAutoImports": true,
+  "explorer.confirmDragAndDrop": false
 }
