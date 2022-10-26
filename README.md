@@ -2,6 +2,15 @@
 
 ### Thank you for Opening my DotFiles💗
 
+This is the setup dotfile fot Ubuntu.
+
+### Terminal Image
+
+![Screenshot from 2022-10-26 21-25-37](https://user-images.githubusercontent.com/54967427/198026439-c8c87453-06b6-42ec-a460-14190cc0c016.png)
+
+
+### Vim Home Image
+
 ![Screenshot from 2022-10-10 23-58-49](https://user-images.githubusercontent.com/54967427/194896040-539d081d-8406-47d8-bf51-e40b95cb2f2b.png)
 
 ## Preferance
