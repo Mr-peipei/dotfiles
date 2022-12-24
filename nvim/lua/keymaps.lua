@@ -28,6 +28,7 @@ keymap("n", "k", "gk", opts)
 
 -- Insert --
 keymap("i", "jj", "<ESC>", opts)
+keymap("n","<c-s>", "<cmd>w<CR>", opts)
 
 -- Visual --
 keymap("v", "J", "5j", opts)
