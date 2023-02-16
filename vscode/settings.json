@@ -68,16 +68,28 @@
   "workbench.editor.untitled.hint": "hidden",
 
   // -----------------------------------------------------
+  // Editor Color Settings
+  // -----------------------------------------------------
+  // https://code.visualstudio.com/api/references/theme-color
+  "workbench.colorCustomizations": {
+    "editor.background": "#171a1a",
+    "editor.lineHighlightBackground": "#171a1a",
+    "editor.lineHighlightBorder": "#9292ac",
+    "statusBar.background": "#171a1a",
+    "activityBar.background": "#171a1a",
+    "sideBar.background": "#171a1a",
+    "sideBar.border": "#9292ac",
+    "editorGroupHeader.tabsBackground": "#171a1a",
+    "tab.activeBackground": "#0e0e0e",
+    "tab.inactiveBackground": "#171a1a",
+    "titleBar.activeBackground": "#171a1a"
+  },
+
+  // -----------------------------------------------------
   // Sync
   // -----------------------------------------------------
   "sync.gist": "8df2ef08ef39f86374d3b104fa421010",
   "settingsSync.keybindingsPerPlatform": false,
-
-  // -----------------------------------------------------
-  // Terminal
-  // -----------------------------------------------------
-  "terminal.integrated.fontSize": 16,
-  "terminal.integrated.fontFamily": "monospace",
 
   // -----------------------------------------------------
   // Prettier
@@ -129,11 +141,22 @@
   // -----------------------------------------------------
   // "workbench.colorTheme": "One Dark Pro",
   "glassit.alpha": 255,
-  "keyboard.dispatch": "keyCode",
+  "keyboard.dispatch": "code",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "tabnine.experimentalAutoImports": true,
-  "explorer.confirmDragAndDrop": false
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderLineHighlight": "all",
+  "window.doubleClickIconToClose": true,
+  "window.titleBarStyle": "custom",
+  "workbench.activityBar.visible": false,
+  "workbench.layoutControl.enabled": false,
+  "window.menuBarVisibility": "compact",
+  "workbench.statusBar.visible": false,
+  "window.commandCenter": false
 }

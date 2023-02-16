@@ -63,6 +63,26 @@
     "command": "-renameFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
+  {
+    "key": "ctrl+alt+a",
+    "command": "workbench.action.toggleMenuBar"
+  },
+  {
+    "key": "ctrl+alt+b",
+    "command": "toggle.window.commandCenter"
+  },
+  {
+    "key": "ctrl+alt+c",
+    "command": "toggle.workbench.layoutControl.enabled"
+  },
+  {
+    "key": "ctrl+alt+d",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  {
+    "key": "ctrl+alt+e",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
 
   // -----------------------------------------------------
   // Git SCM Settings
