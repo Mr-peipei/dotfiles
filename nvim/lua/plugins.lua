@@ -1,73 +1,105 @@
--- his file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
-return require("packer").startup(function()
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
-	use("tpope/vim-fugitive")
-	use("tpope/vim-commentary")
-	use("tomasiser/vim-code-dark") ---vimのカラースキーマ
-	use("folke/tokyonight.nvim")
-	-- use 'lambdalisue/fern.vim' ---ファイラー
-	-- use 'lambdalisue/fern-git-status.vim' ---ファイルツリーにgit差分表示
-	use("lambdalisue/nerdfont.vim") ---ファイラーのアイコン用
-	use("leafgarland/typescript-vim") ---Typescriptのカラースキーマ
-	-- use {'neoclide/coc.nvim', branch='release'}
-	use("jiangmiao/auto-pairs")
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-lua/plenary.nvim")
-	use("kyazdani42/nvim-web-devicons")
-	use("romgrk/barbar.nvim")
-	use("nvim-lualine/lualine.nvim")
-	use("lukas-reineke/indent-blankline.nvim")
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icon
-		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git", "clone", "--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
 	})
-	use("akinsho/toggleterm.nvim")
-	use("goolord/alpha-nvim")
-	use("ahmedkhalf/project.nvim")
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+	-- Theme
+	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+	{ "tomasiser/vim-code-dark" },
+
+	-- UI
+	{ "nvim-lualine/lualine.nvim",           dependencies = { "nvim-tree/nvim-web-devicons" } },
+	{ "romgrk/barbar.nvim",                  dependencies = { "nvim-tree/nvim-web-devicons" } },
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl" },
+	{ "goolord/alpha-nvim",                  dependencies = { "nvim-tree/nvim-web-devicons" } },
+
+	-- File tree
+	{ "nvim-tree/nvim-tree.lua",             dependencies = { "nvim-tree/nvim-web-devicons" } },
+
+	-- Fuzzy finder
+	{ "nvim-telescope/telescope.nvim",       dependencies = { "nvim-lua/plenary.nvim" } },
+
+	-- Terminal
+	{ "akinsho/toggleterm.nvim" },
+
+	-- Project
+	{ "ahmedkhalf/project.nvim" },
 
 	-- Treesitter
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
-	 run = ":TSUpdate",
-	})
-	use("JoosepAlviste/nvim-ts-context-commentstring")
-	use({ "p00f/nvim-ts-rainbow" })
-	-- use {'christianchiarulli/nvim-ts-rainbow'}
-	use("nvim-treesitter/playground")
-	use("windwp/nvim-ts-autotag")
-	use("romgrk/nvim-treesitter-context")
-	use("mizlan/iswap.nvim")
+		build = ":TSUpdate",
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			"HiPhish/rainbow-delimiters.nvim",
+				"windwp/nvim-ts-autotag",
+			"nvim-treesitter/nvim-treesitter-context",
+			"mizlan/iswap.nvim",
+		},
+	},
 
 	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
 
-	-- cmp
-	use("hrsh7th/cmp-nvim-lsp")
-	-- use { "hrsh7th/cmp-buffer", requires = { "hrsh7th/nvim-cmp" } }
-	-- use { "hrsh7th/cmp-path", requires = { "hrsh7th/nvim-cmp" } }
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-nvim-lua")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/vim-vsnip")
+	-- Formatting
+	{ "stevearc/conform.nvim" },
 
-	--git
-	use("lewis6991/gitsigns.nvim")
-	use("kdheepak/lazygit.nvim")
-end)
+	-- Completion
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-vsnip",
+		},
+	},
+
+	-- Git
+	{ "lewis6991/gitsigns.nvim" },
+	{ "kdheepak/lazygit.nvim",   dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "tpope/vim-fugitive" },
+
+	-- Editing
+	{ "tpope/vim-commentary" },
+	{ "jiangmiao/auto-pairs" },
+	{ "leafgarland/typescript-vim" },
+	{ "lambdalisue/nerdfont.vim" },
+
+	-- UI強化
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"folke/flash.nvim",
+		lazy = false,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+	},
+	{
+		"folke/noice.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+	},
+}, {
+	ui = { border = "rounded" },
+})
