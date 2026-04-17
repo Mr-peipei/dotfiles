@@ -3,23 +3,15 @@ if not status_ok then
 	return
 end
 
-local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-ft_to_parser.motoko = "typescript"
-
 configs.setup({
-	ensure_installed = "all", -- one of "all" or a list of languages
-	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-	ignore_install = { "" }, -- List of parsers to ignore installing
+	ensure_installed = "all",
+	sync_install = false,
+	ignore_install = { "" },
 	highlight = {
-		-- use_languagetree = true,
-		enable = true, -- false will disable the whole extension
-		-- disable = { "css", "html" }, -- list of language that will be disabled
-		disable = { "css", "markdown" }, -- list of language that will be disabled
-		-- additional_vim_regex_highlighting = true,
-	},
-	autopairs = {
 		enable = true,
+		disable = { "css", "markdown" },
 	},
+	autopairs = { enable = true },
 	indent = { enable = true, disable = { "python", "css" } },
 	context_commentstring = {
 		enable = true,
@@ -29,19 +21,14 @@ configs.setup({
 		enable = true,
 		disable = { "xml" },
 	},
-	rainbow = {
-		enable = true,
-		colors = {
-			"Gold",
-			"Orchid",
-			"DodgerBlue",
-			-- "Cornsilk",
-			-- "Salmon",
-			-- "LawnGreen",
-		},
-		disable = { "html" },
-	},
-	playground = {
-		enable = true,
-	},
 })
+
+-- rainbow-delimiters (HiPhish/rainbow-delimiters.nvim)
+local rainbow_ok, rainbow = pcall(require, "rainbow-delimiters")
+if rainbow_ok then
+	vim.g.rainbow_delimiters = {
+		strategy = { [""] = rainbow.strategy["global"] },
+		query = { [""] = "rainbow-delimiters" },
+		highlight = { "RainbowDelimiterYellow", "RainbowDelimiterViolet", "RainbowDelimiterBlue" },
+	}
+end

@@ -51,6 +51,11 @@ vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[colorscheme tokyonight]])
 
+-- 透過設定
+vim.api.nvim_set_hl(0, "Normal",      { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalNC",    { bg = "NONE" })
+
 vim.filetype.add({
 	extension = {
 		conf = "dosini",
